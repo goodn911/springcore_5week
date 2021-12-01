@@ -23,7 +23,7 @@ public class FoodService {
     }
     @Transactional
     public void creatFood(Long restaurantId, List<FoodDto> foodDto) {
-        List<Food> foods = new ArrayList<>();
+      //List<Food> foods = new ArrayList<>();테스트코드에 필요없음
 
 
         for (int i = 0; i < foodDto.size(); i++) {
@@ -35,7 +35,7 @@ public class FoodService {
                 throw new IllegalArgumentException("중복된 음식명이 있습니다.");
 
             }
-            foods.add(food);
+       //   foods.add(food);  테스트코드에 필요없음
             foodRepository.save(food);
         }
 
