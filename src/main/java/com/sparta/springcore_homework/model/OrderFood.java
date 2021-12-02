@@ -1,10 +1,13 @@
 package com.sparta.springcore_homework.model;
 
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 import javax.persistence.*;
+
 
 
 @Entity
@@ -30,4 +33,9 @@ public class OrderFood {
     @Column(nullable = false)
     private Long price;   //수량*1개음식 한가격
 
+    public OrderFood(Food food, Long quantity, Long price) {
+        this.food = food;
+        this.quantity=quantity;
+        this.price=price;
+    }
 }

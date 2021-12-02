@@ -56,7 +56,7 @@ public class FoodService {
 //    }
 
     public List<FoodResponseDto> getFoods(Long restaurantId) {
-            List<Food> foodList=foodRepository.findByrestaurantId(restaurantId);
+            List<Food> foodList=foodRepository.findByRestaurantId(restaurantId);
 
             List<FoodResponseDto> foodResponseDtos = new ArrayList<>();
 
