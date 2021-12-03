@@ -9,10 +9,7 @@ import com.sparta.springcore_homework.repository.OrderEntityRepository;
 import com.sparta.springcore_homework.repository.OrderFoodRepository;
 import com.sparta.springcore_homework.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,6 +28,10 @@ public class OrderController {
 
        return  orderService.createOrder(orderRequestDto);
    }
+    @GetMapping("/orders")
+    public List<OrderResponseDto> getOrder(){
+        return orderService.getOrder();
+    }
 
 
 

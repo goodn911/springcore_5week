@@ -2,6 +2,7 @@ package com.sparta.springcore_homework.model;
 
 
 
+import com.sparta.springcore_homework.validator.OrderValidator;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -42,10 +43,14 @@ public class OrderEntity {
 //    }
 
     public OrderEntity(List<OrderFood> orderFoods, Restaurant restaurant, Long price) {
+
+
         this.orderFood=orderFoods;
         this.restaurant=restaurant;
         this.deliveryFee= restaurant.getDeliveryFee();
-        this.totalPrice=price+ restaurant.getDeliveryFee();
+        this.totalPrice= OrderValidator.validateOrderInput(restaurant,price);
+
+
 
     }
 }

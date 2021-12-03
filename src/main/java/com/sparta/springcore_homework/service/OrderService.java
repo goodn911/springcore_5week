@@ -55,13 +55,13 @@ public class OrderService {
                 );  //음식
                 Long quantity = orderFoodRequestDto.getQuantity();
                 Long price=food.getPrice()*quantity;
-
+                totalPrice+=price ;
 
                 OrderFood orderFood = new OrderFood(food, quantity,price);
-                orderFoodRepository.save(orderFood);
+
                 OrderFoodResponseDto orderFoodResponseDto = new OrderFoodResponseDto(food.getName(),quantity,price);
 
-                totalPrice+=price ;
+
 
 
                 orderFoodResponseDtos.add(orderFoodResponseDto);
@@ -69,13 +69,42 @@ public class OrderService {
 
 
 
-                orderFoodResponseDtos.add(orderFoodResponseDto);
+
             }
-            OrderEntity entity = new OrderEntity(orderFoods,restaurant,totalPrice+ restaurant.getDeliveryFee());
+            OrderEntity entity = new OrderEntity(orderFoods,restaurant,totalPrice);
 
             orderEntityRepository.save(entity);
             OrderResponseDto orderResponseDto = new OrderResponseDto(restaurant.getName(),orderFoodResponseDtos, restaurant.getDeliveryFee(), entity.getTotalPrice());
 
             return  orderResponseDto;
     }
+    public List<OrderResponseDto> getOrder() {
+        List<OrderEntity> orderEntitys = orderEntityRepository.findAll();
+
+        List<OrderResponseDto> orderResponseDtoList = new ArrayList<>();
+
+        for(OrderEntity orderEntity:orderEntitys){
+            List<OrderFoodResponseDto> orderFoodResponseDtos = new ArrayList<>();
+
+            for ( OrderFood orderFood: orderEntity.getOrderFood() ){
+
+                String foodName= orderFood.getFood().getName();
+                Long quantity = orderFood.getQuantity();
+                Long price = orderFood.getPrice();
+
+                OrderFoodResponseDto orderFoodResponseDto = new OrderFoodResponseDto(foodName,quantity,price);
+                orderFoodResponseDtos.add(orderFoodResponseDto);
+            }
+
+            String restaurantName = orderEntity.getRestaurant().getName();
+            Long deliveryFee = orderEntity.getDeliveryFee();
+            Long totalprice = orderEntity.getTotalPrice();
+
+            OrderResponseDto orderResponseDto = new OrderResponseDto(restaurantName,orderFoodResponseDtos,deliveryFee,totalprice);
+            orderResponseDtoList.add(orderResponseDto);
+
+        }
+        return orderResponseDtoList;
+    }
+
 }
