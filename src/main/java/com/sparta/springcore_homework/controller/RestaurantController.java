@@ -2,7 +2,6 @@ package com.sparta.springcore_homework.controller;
 
 import com.sparta.springcore_homework.dto.RestaurantDto;
 import com.sparta.springcore_homework.model.Restaurant;
-import com.sparta.springcore_homework.repository.RestaurantRepository;
 import com.sparta.springcore_homework.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

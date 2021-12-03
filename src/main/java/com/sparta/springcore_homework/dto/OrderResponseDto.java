@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
+//반환될 음식 주문서 DTO
 public class OrderResponseDto {
     private String restaurantName;
     private List<OrderFoodResponseDto> foods ;

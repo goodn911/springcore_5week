@@ -26,10 +26,11 @@ public class FoodService {
       //List<Food> foods = new ArrayList<>();테스트코드에 필요없음
 
 
+        //Post 요청 된 음식리스트
         for (int i = 0; i < foodDto.size(); i++) {
             Food food = new Food(restaurantId, foodDto.get(i));
 
-
+            //중복된 음식찾기
             Optional<Food> found=foodRepository.findByRestaurantIdAndName(restaurantId,food.getName());
             if(found.isPresent()){
                 throw new IllegalArgumentException("중복된 음식명이 있습니다.");
@@ -56,12 +57,15 @@ public class FoodService {
 //    }
 
     public List<FoodResponseDto> getFoods(Long restaurantId) {
+
+            //음식점에 있는 음식찾기
             List<Food> foodList=foodRepository.findByRestaurantId(restaurantId);
 
             List<FoodResponseDto> foodResponseDtos = new ArrayList<>();
 
             for(int i = 0 ; i<foodList.size();i++){
 
+                //음식 정보담기
                FoodResponseDto foodResponseDto= new FoodResponseDto(foodList.get(i).getId(),foodList.get(i).getName(),foodList.get(i).getPrice());
                foodResponseDtos.add(foodResponseDto);
             }

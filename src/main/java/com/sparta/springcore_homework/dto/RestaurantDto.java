@@ -10,6 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
+//음식점 DTO
 public class RestaurantDto {
 
     private String name;

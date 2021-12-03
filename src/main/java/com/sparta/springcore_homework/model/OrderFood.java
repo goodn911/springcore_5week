@@ -1,6 +1,7 @@
 package com.sparta.springcore_homework.model;
 
 
+import com.sparta.springcore_homework.validator.OrderValidator;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,11 +23,11 @@ public class OrderFood {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
-
+    //음식
     @OneToOne
     @JoinColumn(name="food_Id",nullable = false)
     private Food food;
-
+    //주문수량
     @Column(nullable = false)
     private Long quantity;
 
@@ -34,9 +35,8 @@ public class OrderFood {
     private Long price;   //수량*1개음식 한가격
 
     public OrderFood(Food food, Long quantity, Long price) {
-        if(quantity<1||quantity>100){
-            throw new IllegalArgumentException("주문수량 허용 범위는 1~100개 사이입니다.");
-        }
+       //음식수량 유효성검사
+        OrderValidator.validateQuantityInput(quantity);
 
         this.food = food;
         this.quantity=quantity;

@@ -18,13 +18,13 @@ public class Restaurant {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long id;
-
+    //음식점이름
     @Column(nullable = false)
     private String name;
-
+    //최소주문금액
     @Column(nullable = false)
     private Long minOrderPrice;
-
+    //배달요금
     @Column(nullable = false)
     private Long deliveryFee;
 

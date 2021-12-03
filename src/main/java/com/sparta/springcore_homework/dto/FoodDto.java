@@ -10,6 +10,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
+
+//음식정보 DTO
 public class FoodDto {
 
 

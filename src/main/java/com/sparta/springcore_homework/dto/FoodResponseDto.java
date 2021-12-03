@@ -9,6 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
+//음식 반환할 DTO
 public class FoodResponseDto {
     Long id;
     private String name;
